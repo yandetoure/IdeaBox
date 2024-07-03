@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IdeaController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('ideas.index');
 });
 
 Route::prefix('ideas')->group(function () {
@@ -15,8 +15,5 @@ Route::prefix('ideas')->group(function () {
     Route::get('/{idea}/edit', [IdeaController::class, 'edit'])->name('ideas.edit');
     Route::put('/{idea}', [IdeaController::class, 'update'])->name('ideas.update');
     Route::delete('/{idea}', [IdeaController::class, 'destroy'])->name('ideas.destroy');
+    
 });
-
-
-
-
