@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Idea;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class IdeaController extends Controller
 {
@@ -12,21 +13,17 @@ class IdeaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $ideas = Idea::all();
-        return view('ideas.index', compact('ideas'));
-    }
+public function index()
+{
+    $ideas = Idea::all();
+    return view('ideas.index', compact('ideas'));
+}
 
-    /**
-     * Show the form for creating a new idea.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('Ideas.create');
-    }
+public function create()
+{
+    $categories = Category::all(); // Fetch all categories, adjust query as needed
+    return view('ideas.create', compact('categories'));
+}
 
     /**
      * Store a newly created idea in storage.
@@ -46,10 +43,10 @@ class IdeaController extends Controller
             'image' => $request->input('image'),
             'content' => $request->input('content'),
             'category_id' => $request->input('category_id'),
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(), // auth()->user()->id can be shortened to auth()->id()
         ]);
 
-        return redirect()->route('ideas.index')->with('success', 'Idea created successfully!');
+        return redirect()->route('ideas.index')->with('success', 'Publication réussie');
     }
 
     /**
@@ -64,6 +61,10 @@ class IdeaController extends Controller
         return view('ideas.show', compact('idea'));
     }
 
+    public function myideas(){
+        $ideas = Idea::where('user_id', auth()->id())->get();
+        return view('ideas.myideas', compact('ideas'));
+    }
     /**
      * Show the form for editing the specified idea.
      *
@@ -72,7 +73,9 @@ class IdeaController extends Controller
      */
     public function edit($id)
     {
-        // Logic for showing the edit form (if needed)
+        $categories = Category::all(); 
+        $idea = Idea::findOrFail($id);
+        return view('ideas.edit', compact('idea','categories'));
     }
 
     /**
@@ -91,12 +94,13 @@ class IdeaController extends Controller
         ]);
 
         $idea = Idea::findOrFail($id);
-        $idea->image = $request->input('image');
-        $idea->content = $request->input('content');
-        $idea->category_id = $request->input('category_id');
-        $idea->save();
+        $idea->update([
+            'image' => $request->input('image'),
+            'content' => $request->input('content'),
+            'category_id' => $request->input('category_id'),
+        ]);
 
-        return redirect()->route('ideas.index')->with('success', 'Idea updated successfully!');
+        return redirect()->route('ideas.index')->with('success', 'Publification modifiée!');
     }
 
     /**
@@ -110,6 +114,6 @@ class IdeaController extends Controller
         $idea = Idea::findOrFail($id);
         $idea->delete();
 
-        return redirect()->route('ideas.index')->with('success', 'Idea deleted successfully!');
+        return redirect()->route('ideas.index')->with('success', 'Idée supprimée!');
     }
 }
