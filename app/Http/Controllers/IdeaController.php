@@ -61,7 +61,7 @@ public function create()
         return view('ideas.show', compact('idea'));
     }
 
-    public function myideas(){
+    public function myideas( ){
         $ideas = Idea::where('user_id', auth()->id())->get();
         return view('ideas.myideas', compact('ideas'));
     }
