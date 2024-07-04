@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        
         body {
             background-color: #f8f9fa;
         }
@@ -21,7 +22,7 @@
         }
         .card-title {
             color: #343a40;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
             margin-bottom: 10px;
         }
@@ -60,24 +61,31 @@
             background-color: #138496;
             border-color: #138496;
         }
+        .image{
+            width:800px;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
     </style>
 </head>
 <body>
 
 <div class="container mt-5">
-    <h2 class="text-center">Liste des Idées</h2>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="text-center">
+            <div class="text">
                 @foreach ($ideas as $idea)
                     <div class="card membre-card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $user->ame }}</h5>
-                            <p class="card-text">Titre: {{ $idea->title }}</p>
-                            <p class="card-text">Priorité: {{ $idea->state }}</p>
+                            <h6 class="card-title">{{ Auth::user()->name }}</h6>
+                            <p class="card-text">{{ $idea->content }}</p>
+                            <img src="{{ $idea->image}} " alt="image" class="image">
+                            <div class="text-center">
                             <a href="{{ route('ideas.edit', $idea->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i> Modifier</a>
-                            <a href="{{ route('ideas.delete', $idea->id) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Supprimer</a>
+                            <a href="{{ route('ideas.destroy', $idea->id) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Supprimer</a>
                             <a href="{{ route('ideas.show', $idea->id) }}" class="btn btn-info"><i class="fas fa-info-circle"></i> Afficher plus</a>
+                            </div>
                         </div>
                     </div>
                 @endforeach
