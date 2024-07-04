@@ -10,7 +10,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        
+                .nav-bar {
+            height: 45px;
+            font-size: 18px;
+            background-color: #4edde2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            margin-top: 50px;
+        }
         body {
             background-color: #f8f9fa;
         }
@@ -78,7 +87,7 @@
                 @foreach ($ideas as $idea)
                     <div class="card membre-card mb-3">
                         <div class="card-body">
-                            <h6 class="card-title">{{ Auth::user()->name }}</h6>
+                        <h6 class="card-title">{{ $idea->user->name }}</h6>
                             <p class="card-text">{{ $idea->content }}</p>
                             <img src="{{ $idea->image}} " alt="image" class="image">
                             <div class="text-center">
