@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('ideas.index');
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
@@ -17,7 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('ideas')->name('ideas.')->group(function () {
+Route::prefix('ideas')->name('ideas.')-> middleware('auth')->group(function () {
     Route::get('/', [IdeaController::class, 'index'])->name('index');
     Route::get('/create', [IdeaController::class, 'create'])->name('create');
     Route::post('/', [IdeaController::class,'store'])->name('store');

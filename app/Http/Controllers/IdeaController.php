@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\User;
 
 class IdeaController extends Controller
 {
@@ -15,6 +16,7 @@ class IdeaController extends Controller
      */
 public function index()
 {
+    $ideas = Idea::with('user', 'category')->get();
     $ideas = Idea::all();
     return view('ideas.index', compact('ideas'));
 }
