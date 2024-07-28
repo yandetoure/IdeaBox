@@ -60,7 +60,8 @@ public function create()
     public function show($id)
     {
         $idea = Idea::findOrFail($id);
-        return view('ideas.show', compact('idea'));
+        $comments = $idea->comments()->paginate(4); // Paginer les commentaires
+        return view('ideas.show', compact('idea', 'comments'));
     }
 
     public function myideas( ){

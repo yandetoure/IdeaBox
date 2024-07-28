@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        .nav-bar {
+            height: 45px;
+            font-size: 18px;
+            background-color: #4edde2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            margin-top: 50px;
+        }
         body {
             background-color: #f8f9fa;
         }
@@ -30,46 +40,36 @@
             font-size: 16px;
             margin-bottom: 15px;
         }
-        .btn {
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            margin-right: 10px;
+ 
+        .btn-edit {
+            color: #007bff;
         }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
+        .btn-edit:hover {
+            color: #0056b3;
+            text-decoration: underline;
         }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+        .btn-delete {
+            color: #dc3545;
         }
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-        .btn-danger:hover {
-            background-color: #bd2130;
-            border-color: #bd2130;
+        .btn-delete:hover {
+            color: #bd2130;
+            text-decoration: underline;
         }
         .btn-info {
-            background-color: #17a2b8;
-            border-color: #17a2b8;
+            color: #6c757d;
         }
         .btn-info:hover {
-            background-color: #138496;
-            border-color: #138496;
+            color: #343a40;
+            text-decoration: underline;
         }
-        .image{
-            width:800px;
+        .image {
+            width: 800px;
             height: 400px;
             margin-bottom: 20px;
         }
-
     </style>
 </head>
 <body>
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -77,14 +77,13 @@
                 @foreach ($ideas as $idea)
                     <div class="card membre-card mb-3">
                         <div class="card-body">
-                            <h6 class="card-title">{{ Auth::user()->name }}</h6>
+                            <h6 class="card-title">{{ $idea->user->name }}</h6>
                             <p class="card-text">{{ $idea->content }}</p>
-                            <img src="{{ $idea->image}} " alt="image" class="image">
+                            <img src="{{ $idea->image }}" alt="image" class="image">
                             <div class="text-center">
-                            <a href="{{ route('ideas.edit', $idea->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i> Modifier</a>
-                            <a href="{{ route('ideas.destroy', $idea->id) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Supprimer</a>
-                            <a href="{{ route('ideas.show', $idea->id) }}" class="btn btn-info"><i class="fas fa-info-circle"></i> Afficher plus</a>
-                            </div>
+                                <a href="{{ route('ideas.edit', $idea->id) }}" class="btn btn-edit"><i class="fas fa-edit"></i> Modifier</a>
+                                <a href="{{ route('ideas.destroy', $idea->id) }}" class="btn btn-delete"><i class="fas fa-trash-alt"></i> Supprimer</a>
+                                <a href="{{ route('ideas.show', $idea->id) }}" class="btn btn-info"><i class="fas fa-info-circle"></i> Afficher plus</a>                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -95,11 +94,9 @@
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
 @endsection
