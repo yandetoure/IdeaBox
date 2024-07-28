@@ -4,7 +4,7 @@
         .nav-bar {
             height: 45px;
             font-size: 18px;
-            background-color: #4edde2;
+            background-color: #ffffff; /* Changement à blanc */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -43,19 +43,22 @@
         .btn a:active {
             border-bottom: 2px solid #4edde2;
         }
-        .logo{
+
+        .logo {
             height: 40px;
             margin-left: -25px;
             margin-right: 90px;
         }
-        .profil{
+
+        .profil {
             margin-left: 80px;
             margin-right: 20px;
             font-size: 16px;
             color: #FFA908;
             font-weight: 600;
         }
-        .profil:hover{
+
+        .profil:hover {
             margin-left: 80px;
             margin-right: 20px;
             font-size: 16px;
@@ -69,11 +72,10 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <div class="logo"><img src="{{asset('images/Capture_d_écran_du_2024-07-03_14-35-56-removebg-preview.png') }} " alt="" class="logo"> </div>
+                    <div class="logo"><img src="{{ asset('images/Capture_d_écran_du_2024-07-03_14-35-56-removebg-preview.png') }}" alt="" class="logo"></div>
                     <ul class="nav-bar-btn">
                         <li class="btn"><a href="{{ route('ideas.index') }}">Accueil</a></li>
                         <li class="btn"><a href="{{ route('ideas.create') }}">Mes Idées</a></li>
-                        <li class="btn"><a href=" {{ route('ideas.myideas') }}">    A propos</a></li>
                     </ul>
                 </div>
             </div>
