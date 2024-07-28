@@ -18,3 +18,21 @@
         </div>
     </div>
 @endsection
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<!-- bouton -->
+<button id="myButton">Click me</button>
+
+<!-- Après un clic la function est appelée grâce à l'écouteur d'événement -->
+<script>
+document.getElementById('myButton').addEventListener('click', function() {
+  alert('Vous avez cliqué sur le bouton!');
+});
+</script>
+
+</body>
+</html>
