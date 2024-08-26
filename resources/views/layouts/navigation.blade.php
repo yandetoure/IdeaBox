@@ -75,7 +75,7 @@
                     <div class="logo"><img src="{{ asset('images/Capture_d_écran_du_2024-07-03_14-35-56-removebg-preview.png') }}" alt="" class="logo"></div>
                     <ul class="nav-bar-btn">
                         <li class="btn"><a href="{{ route('ideas.index') }}">Accueil</a></li>
-                        <li class="btn"><a href="{{ route('ideas.create') }}">Mes Idées</a></li>
+                        <li class="btn"><a href="{{ route('ideas.create') }}">AJouter une idée</a></li>
                     </ul>
                 </div>
             </div>

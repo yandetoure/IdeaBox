@@ -17,7 +17,7 @@ class IdeaController extends Controller
 public function index()
 {
     $ideas = Idea::with('user', 'category')->get();
-    $ideas = Idea::all();
+    $ideas = Idea::with('user', 'category')->orderBy('created_at', 'desc')->get();
     return view('ideas.index', compact('ideas'));
 }
 

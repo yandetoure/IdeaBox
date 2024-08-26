@@ -90,7 +90,11 @@
                             <div class="text-center mt-2">
                                 @if (auth()->id() === $idea->user_id)
                                     <a href="{{ route('ideas.edit', $idea->id) }}" class="btn btn-edit"><i class="fas fa-edit"></i> Modifier</a>
-                                    <a href="{{ route('ideas.destroy', $idea->id) }}" class="btn btn-delete"><i class="fas fa-trash-alt"></i> Supprimer</a>
+                                    <form action="{{ route('ideas.destroy', $idea->id) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette idée ?');"><i class="fas fa-trash-alt"></i> Supprimer</button>
+                                    </form>
                                 @endif
                             </div>
                         </div>
